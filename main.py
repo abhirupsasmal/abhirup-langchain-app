@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 from langchain.chains import LLMChain
 from langchain_openai import OpenAI
 from langchain.prompts import PromptTemplate
+import os
 
 
 app = Flask(__name__)
@@ -20,7 +21,11 @@ def generate():
       prompt = req_json.get('prompt')
     else:
       return make_response("Request must be JSON", 400)
-    prompt_template = PromptTemplate.from_template("Generate a blog on title {title}?")
+    # Check if API key is set
+    if not os.getenv('OPENAI_API_KEY'):
+        return make_response("OpenAI API key not configured", 500)
+    
+    prompt_template = PromptTemplate.from_template("Generate a blog on title {prompt}?")
     llm = OpenAI(temperature=0.3)
 
     chain = LLMChain(llm=llm, prompt=prompt_template)
