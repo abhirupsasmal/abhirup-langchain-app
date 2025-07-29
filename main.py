@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from langchain.chains import LLMChain
-from langchain.llms import OpenAI
+from langchain_openai import OpenAI
 from langchain.prompts import PromptTemplate
 
 

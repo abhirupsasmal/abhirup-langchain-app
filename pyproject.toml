@@ -10,6 +10,8 @@ flask = "^3.0.0"
 gunicorn = "^21.2.0"
 langchain = "^0.3.27"
 openai = "^1.97.1"
+langchain-community = "^0.3.27"
+langchain-openai = "^0.3.28"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md
