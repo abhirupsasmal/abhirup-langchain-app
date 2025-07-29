@@ -19,7 +19,7 @@ def generate():
       req_json = request.get_json()
       prompt = req_json.get('prompt')
     else:
-      return "Request must be JSON", 400
+      return make_response("Request must be JSON", 400)
     prompt_template = PromptTemplate.from_template("Generate a blog on title {title}?")
     llm = OpenAI(temperature=0.3)
 
